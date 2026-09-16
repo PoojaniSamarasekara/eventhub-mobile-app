@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'models/event.dart';
 import 'services/favourites_service.dart';
+import 'booking_form_screen.dart';
 
 class EventDetailsScreen extends StatefulWidget {
   final Event event;
@@ -165,7 +166,16 @@ class _EventDetailsScreenState extends State<EventDetailsScreen> {
                     width: double.infinity,
                     height: 50,
                     child: ElevatedButton(
-                      onPressed: widget.event.seatsAvailable > 0 ? () {} : null,
+                      onPressed: widget.event.seatsAvailable > 0
+                          ? () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => BookingFormScreen(event: widget.event),
+                                ),
+                              );
+                            }
+                          : null,
                       style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
                       ),
